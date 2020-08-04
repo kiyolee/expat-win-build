@@ -64,6 +64,12 @@
 #  endif
 #endif
 
+#if defined(_MSC_VER)
+#  define open _open
+#  define close _close
+#  define read _read
+#endif
+
 #ifdef _DEBUG
 #  define READ_SIZE 16
 #else

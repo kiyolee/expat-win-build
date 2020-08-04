@@ -76,6 +76,11 @@
 #include "xmltchar.h"
 #include "filemap.h"
 
+#if defined(_MSC_VER)
+#  define open _open
+#  define close _close
+#endif
+
 int
 filemap(const tchar *name,
         void (*processor)(const void *, size_t, const tchar *, void *arg),
