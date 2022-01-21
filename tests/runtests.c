@@ -10,7 +10,7 @@
    Copyright (c) 2003      Greg Stein <gstein@users.sourceforge.net>
    Copyright (c) 2005-2007 Steven Solie <ssolie@users.sourceforge.net>
    Copyright (c) 2005-2012 Karl Waclawek <karl@waclawek.net>
-   Copyright (c) 2016-2021 Sebastian Pipping <sebastian@pipping.org>
+   Copyright (c) 2016-2022 Sebastian Pipping <sebastian@pipping.org>
    Copyright (c) 2017-2018 Rhodri James <rhodri@wildebeest.org.uk>
    Copyright (c) 2017      Joe Orton <jorton@redhat.com>
    Copyright (c) 2017      José Gutiérrez de la Concha <jose@zeroc.com>
@@ -57,7 +57,13 @@
 #include <math.h>   /* NAN, INFINITY, isnan */
 
 #if ! defined(__cplusplus)
+#if defined(_MSC_VER) && _MSC_VER < 1800
+typedef int bool;
+#define true 1
+#define false 0
+#else
 #  include <stdbool.h>
+#endif
 #endif
 
 #include "expat.h"
@@ -7352,7 +7358,7 @@ START_TEST(test_misc_version) {
     fail("Version mismatch");
 
 #if ! defined(XML_UNICODE) || defined(XML_UNICODE_WCHAR_T)
-  if (xcstrcmp(version_text, XCS("expat_2.4.2"))) /* needs bump on releases */
+  if (xcstrcmp(version_text, XCS("expat_2.4.3"))) /* needs bump on releases */
     fail("XML_*_VERSION in expat.h out of sync?\n");
 #else
   /* If we have XML_UNICODE defined but not XML_UNICODE_WCHAR_T
