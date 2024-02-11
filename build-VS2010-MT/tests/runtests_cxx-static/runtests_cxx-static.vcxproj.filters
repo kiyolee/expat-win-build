@@ -15,46 +15,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\tests\acc_tests.c">
+    <ClCompile Include="..\..\..\tests\acc_tests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\alloc_tests.c">
+    <ClCompile Include="..\..\..\tests\alloc_tests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\basic_tests.c">
+    <ClCompile Include="..\..\..\tests\basic_tests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\chardata.c">
+    <ClCompile Include="..\..\..\tests\chardata_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\common.c">
+    <ClCompile Include="..\..\..\tests\common_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\dummy.c">
+    <ClCompile Include="..\..\..\tests\dummy_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\handlers.c">
+    <ClCompile Include="..\..\..\tests\handlers_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\memcheck.c">
+    <ClCompile Include="..\..\..\tests\memcheck_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\minicheck.c">
+    <ClCompile Include="..\..\..\tests\minicheck_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\misc_tests.c">
+    <ClCompile Include="..\..\..\tests\misc_tests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\nsalloc_tests.c">
+    <ClCompile Include="..\..\..\tests\nsalloc_tests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\ns_tests.c">
+    <ClCompile Include="..\..\..\tests\ns_tests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\runtests.c">
+    <ClCompile Include="..\..\..\tests\runtests_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\structdata.c">
+    <ClCompile Include="..\..\..\tests\structdata_cxx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
