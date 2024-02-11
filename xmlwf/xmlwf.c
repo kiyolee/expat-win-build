@@ -313,7 +313,7 @@ xcsdup(const XML_Char *s) {
     /* Do nothing */
   }
   numBytes = count * sizeof(XML_Char);
-  result = malloc(numBytes);
+  result = (XML_Char *) malloc(numBytes);
   if (result == NULL)
     return NULL;
   memcpy(result, s, numBytes);
@@ -394,7 +394,7 @@ endDoctypeDecl(void *userData) {
     goto cleanUp;
   }
 
-  notations = malloc(notationCount * sizeof(NotationList *));
+  notations = (NotationList **) malloc(notationCount * sizeof(NotationList *));
   if (notations == NULL) {
     fprintf(stderr, "Unable to sort notations");
     goto cleanUp;
@@ -448,7 +448,7 @@ static void XMLCALL
 notationDecl(void *userData, const XML_Char *notationName, const XML_Char *base,
              const XML_Char *systemId, const XML_Char *publicId) {
   XmlwfUserData *data = (XmlwfUserData *)userData;
-  NotationList *entry = malloc(sizeof(NotationList));
+  NotationList *entry = (NotationList *) malloc(sizeof(NotationList));
   const char *errorMessage = "Unable to store NOTATION for output\n";
 
   UNUSED_P(base);

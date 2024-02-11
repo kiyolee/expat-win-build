@@ -66,7 +66,7 @@ codepageMap(int cp, int *map) {
   for (i = 0; i < 256; i++) {
     if (map[i] == -1) {
       char c = (char)i;
-      unsigned short n;
+      WCHAR n;
       if (MultiByteToWideChar(cp, MB_PRECOMPOSED | MB_ERR_INVALID_CHARS, &c, 1,
                               &n, 1)
           == 1)
@@ -84,7 +84,7 @@ codepageMap(int cp, int *map) {
 int
 codepageConvert(int cp, const char *p) {
 #if defined(_WIN32)
-  unsigned short c;
+  WCHAR c;
   if (MultiByteToWideChar(cp, MB_PRECOMPOSED | MB_ERR_INVALID_CHARS, p, 2, &c,
                           1)
       == 1)
