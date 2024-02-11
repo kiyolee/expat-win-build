@@ -1,6 +1,5 @@
 ; DEF file for MS VC++
 
-LIBRARY
 EXPORTS
   XML_DefaultCurrent @1
   XML_ErrorString @2
@@ -78,3 +77,5 @@ EXPORTS
 ; added with version 2.4.0
   XML_SetBillionLaughsAttackProtectionActivationThreshold @69
   XML_SetBillionLaughsAttackProtectionMaximumAmplification @70
+; added with version 2.6.0
+  XML_SetReparseDeferralEnabled @71

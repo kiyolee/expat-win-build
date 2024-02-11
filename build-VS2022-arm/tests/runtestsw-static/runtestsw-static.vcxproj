@@ -18,13 +18,6 @@
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\tests\chardata.c" />
-    <ClCompile Include="..\..\..\tests\memcheck.c" />
-    <ClCompile Include="..\..\..\tests\minicheck.c" />
-    <ClCompile Include="..\..\..\tests\runtests.c" />
-    <ClCompile Include="..\..\..\tests\structdata.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{82240291-AA6D-4EFA-8561-A0740F594A35}</ProjectGuid>
@@ -100,6 +93,22 @@
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\tests\acc_tests.c" />
+    <ClCompile Include="..\..\..\tests\alloc_tests.c" />
+    <ClCompile Include="..\..\..\tests\basic_tests.c" />
+    <ClCompile Include="..\..\..\tests\chardata.c" />
+    <ClCompile Include="..\..\..\tests\common.c" />
+    <ClCompile Include="..\..\..\tests\dummy.c" />
+    <ClCompile Include="..\..\..\tests\handlers.c" />
+    <ClCompile Include="..\..\..\tests\memcheck.c" />
+    <ClCompile Include="..\..\..\tests\minicheck.c" />
+    <ClCompile Include="..\..\..\tests\misc_tests.c" />
+    <ClCompile Include="..\..\..\tests\nsalloc_tests.c" />
+    <ClCompile Include="..\..\..\tests\ns_tests.c" />
+    <ClCompile Include="..\..\..\tests\runtests.c" />
+    <ClCompile Include="..\..\..\tests\structdata.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
