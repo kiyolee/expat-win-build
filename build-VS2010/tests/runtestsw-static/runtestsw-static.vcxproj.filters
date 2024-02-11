@@ -15,7 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\tests\runtests.c">
+    <ClCompile Include="..\..\..\tests\acc_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\alloc_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\basic_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\chardata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\dummy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\handlers.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\tests\memcheck.c">
@@ -24,10 +42,19 @@
     <ClCompile Include="..\..\..\tests\minicheck.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\structdata.c">
+    <ClCompile Include="..\..\..\tests\misc_tests.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\chardata.c">
+    <ClCompile Include="..\..\..\tests\nsalloc_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\ns_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\runtests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tests\structdata.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
