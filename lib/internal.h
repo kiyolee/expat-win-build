@@ -163,6 +163,10 @@
 
 #include "expat.h" // so we can use type XML_Parser below
 
+#if defined(_MSC_VER) && _MSC_VER < 1700 // VS2010 or before
+#include "math_vs2010.h"
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
