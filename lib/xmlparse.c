@@ -86,7 +86,9 @@
 #  error XML_CONTEXT_BYTES must be defined, non-empty and >=0 (0 to disable, >=1 to enable; 1024 is a common default)
 #endif
 
+#if ! defined(__cplusplus)
 #include <stdbool.h>
+#endif
 #include <stddef.h>
 #include <string.h> /* memset(), memcpy() */
 #include <assert.h>
@@ -1227,7 +1229,7 @@ parserCreate(const XML_Char *encodingName,
       parser = (XML_Parser)((char *)sizeAndParser + sizeof(size_t)
                             + EXPAT_MALLOC_PADDING);
 #else
-    parser = memsuite->malloc_fcn(sizeof(struct XML_ParserStruct));
+    parser = (XML_Parser)memsuite->malloc_fcn(sizeof(struct XML_ParserStruct));
     if (parser != NULL) {
 #endif
       mtemp = (XML_Memory_Handling_Suite *)&(parser->m_mem);
@@ -7429,7 +7431,7 @@ normalizePublicId(XML_Char *publicId) {
 
 static DTD *
 dtdCreate(XML_Parser parser) {
-  DTD *p = MALLOC(parser, sizeof(DTD));
+  DTD *p = (DTD *)MALLOC(parser, sizeof(DTD));
   if (p == NULL)
     return p;
   poolInit(&(p->pool), parser);
@@ -7618,7 +7620,7 @@ dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd,
       }
 #endif
       newE->defaultAtts
-          = MALLOC(parser, oldE->nDefaultAtts * sizeof(DEFAULT_ATTRIBUTE));
+          = (DEFAULT_ATTRIBUTE *)MALLOC(parser, oldE->nDefaultAtts * sizeof(DEFAULT_ATTRIBUTE));
       if (! newE->defaultAtts) {
         return 0;
       }
@@ -7789,7 +7791,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize) {
     /* table->size is a power of 2 */
     table->size = (size_t)1 << INIT_POWER;
     tsize = table->size * sizeof(NAMED *);
-    table->v = MALLOC(table->parser, tsize);
+    table->v = (NAMED **)MALLOC(table->parser, tsize);
     if (! table->v) {
       table->size = 0;
       return NULL;
@@ -7829,7 +7831,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize) {
       }
 
       size_t tsize = newSize * sizeof(NAMED *);
-      NAMED **newV = MALLOC(table->parser, tsize);
+      NAMED **newV = (NAMED **)MALLOC(table->parser, tsize);
       if (! newV)
         return NULL;
       memset(newV, 0, tsize);
@@ -7858,7 +7860,7 @@ lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize) {
       }
     }
   }
-  table->v[i] = MALLOC(table->parser, createSize);
+  table->v[i] = (NAMED *)MALLOC(table->parser, createSize);
   if (! table->v[i])
     return NULL;
   memset(table->v[i], 0, createSize);
@@ -8162,7 +8164,7 @@ poolGrow(STRING_POOL *pool) {
     if (bytesToAllocate == 0)
       return XML_FALSE;
 
-    tem = MALLOC(pool->parser, bytesToAllocate);
+    tem = (BLOCK *)MALLOC(pool->parser, bytesToAllocate);
     if (! tem)
       return XML_FALSE;
     tem->size = blockSize;
@@ -8419,7 +8421,7 @@ copyString(const XML_Char *s, XML_Parser parser) {
   charsRequired++;
 
   /* Now allocate space for the copy */
-  result = MALLOC(parser, charsRequired * sizeof(XML_Char));
+  result = (XML_Char *)MALLOC(parser, charsRequired * sizeof(XML_Char));
   if (result == NULL)
     return NULL;
   /* Copy the original into place */
