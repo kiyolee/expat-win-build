@@ -18,16 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\tests\chardata.c" />
-    <ClCompile Include="..\..\..\tests\memcheck.c" />
-    <ClCompile Include="..\..\..\tests\minicheck.c" />
-    <ClCompile Include="..\..\..\tests\runtestspp.cpp" />
-    <ClCompile Include="..\..\..\tests\structdata.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FBD220DF-C952-4E47-958F-75CF93C11CB8}</ProjectGuid>
-    <RootNamespace>runtestsppw-static</RootNamespace>
+    <ProjectGuid>{D0437FFF-3C1C-40D8-A018-9D8066C98BEE}</ProjectGuid>
+    <RootNamespace>runtests_cxx</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -55,19 +48,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testappw-static.props" />
+    <Import Project="..\..\_props\testapp.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testappw-static.props" />
+    <Import Project="..\..\_props\testapp.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testappw-static.props" />
+    <Import Project="..\..\_props\testapp.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\_props\testappw-static.props" />
+    <Import Project="..\..\_props\testapp.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -95,6 +88,22 @@
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\tests\acc_tests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\alloc_tests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\basic_tests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\chardata_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\common_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\dummy_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\handlers_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\memcheck_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\minicheck_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\misc_tests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\nsalloc_tests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\ns_tests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\runtests_cxx.cpp" />
+    <ClCompile Include="..\..\..\tests\structdata_cxx.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
