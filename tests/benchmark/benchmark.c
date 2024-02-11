@@ -101,7 +101,7 @@ main(int argc, char *argv[]) {
     exit(3);
   }
 
-  XMLBuf = malloc(fileAttr.st_size);
+  XMLBuf = (char *) malloc(fileAttr.st_size);
   fileSize = fread(XMLBuf, sizeof(char), fileAttr.st_size, fd);
   fclose(fd);
 
