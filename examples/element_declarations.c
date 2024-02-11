@@ -38,7 +38,9 @@
    USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#if ! defined(__cplusplus)
 #include <stdbool.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <expat.h>
@@ -65,7 +67,7 @@ typedef struct StackStruct {
 
 static Stack *
 stackPushMalloc(Stack *stackTop, const XML_Content *model, unsigned level) {
-  Stack *const newStackTop = malloc(sizeof(Stack));
+  Stack *const newStackTop = (Stack *) malloc(sizeof(Stack));
   if (! newStackTop) {
     return NULL;
   }
