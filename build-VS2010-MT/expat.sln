@@ -28,7 +28,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtests", "tests\runtests\
 		{3AF1FB63-D1A1-4D79-B45C-F05F86461400} = {3AF1FB63-D1A1-4D79-B45C-F05F86461400}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtestspp", "tests\runtestspp\runtestspp.vcxproj", "{D0437FFF-3C1C-40D8-A018-9D8066C98BEE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtests_cxx", "tests\runtests_cxx\runtests_cxx.vcxproj", "{D0437FFF-3C1C-40D8-A018-9D8066C98BEE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3AF1FB63-D1A1-4D79-B45C-F05F86461400} = {3AF1FB63-D1A1-4D79-B45C-F05F86461400}
 	EndProjectSection
@@ -68,17 +68,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "outlinew-static", "examples
 		{C3017B37-BF3B-4008-96E5-C0377060DFD4} = {C3017B37-BF3B-4008-96E5-C0377060DFD4}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtestspp-static", "tests\runtestspp-static\runtestspp-static.vcxproj", "{B4178DB1-AD90-4D45-BD04-21C0CFCB5B42}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtests_cxx-static", "tests\runtests_cxx-static\runtests_cxx-static.vcxproj", "{B4178DB1-AD90-4D45-BD04-21C0CFCB5B42}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D11A09BE-75C1-425A-AA5C-EF55E29DBCF6} = {D11A09BE-75C1-425A-AA5C-EF55E29DBCF6}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtestsppw", "tests\runtestsppw\runtestsppw.vcxproj", "{D9588641-4F8A-48E6-ADC1-45242E1EDEFA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtests_cxxw", "tests\runtests_cxxw\runtests_cxxw.vcxproj", "{D9588641-4F8A-48E6-ADC1-45242E1EDEFA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2FEFB558-46C7-4275-AE78-5DE23D60BA4D} = {2FEFB558-46C7-4275-AE78-5DE23D60BA4D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtestsppw-static", "tests\runtestsppw-static\runtestsppw-static.vcxproj", "{FBD220DF-C952-4E47-958F-75CF93C11CB8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "runtests_cxxw-static", "tests\runtests_cxxw-static\runtests_cxxw-static.vcxproj", "{FBD220DF-C952-4E47-958F-75CF93C11CB8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C3017B37-BF3B-4008-96E5-C0377060DFD4} = {C3017B37-BF3B-4008-96E5-C0377060DFD4}
 	EndProjectSection
