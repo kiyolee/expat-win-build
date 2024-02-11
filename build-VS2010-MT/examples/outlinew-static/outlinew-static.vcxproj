@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\..\examples\outline.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{CE5C13A4-FF56-49A9-ABB2-B9A2814F4337}</ProjectGuid>
     <RootNamespace>outlinew-static</RootNamespace>
   </PropertyGroup>
