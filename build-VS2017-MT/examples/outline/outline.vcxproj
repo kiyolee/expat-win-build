@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\..\examples\outline.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{CBB3F006-C784-40EB-8ECF-CAB6EED90DD7}</ProjectGuid>
     <RootNamespace>outline</RootNamespace>
   </PropertyGroup>

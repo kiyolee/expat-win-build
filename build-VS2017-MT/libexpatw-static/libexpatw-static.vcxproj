@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C3017B37-BF3B-4008-96E5-C0377060DFD4}</ProjectGuid>
     <RootNamespace>libexpatw-static</RootNamespace>
   </PropertyGroup>

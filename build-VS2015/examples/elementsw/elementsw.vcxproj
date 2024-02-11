@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\..\examples\elements.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{64C4F44D-3D5F-4DB5-82A8-8A3602BE17AC}</ProjectGuid>
     <RootNamespace>elementsw</RootNamespace>
   </PropertyGroup>

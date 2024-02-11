@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\xmlwf\xmlwf.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{953B4E30-79A5-4A11-B79C-1AAE083677CB}</ProjectGuid>
     <RootNamespace>xmlwfw-static</RootNamespace>
   </PropertyGroup>
