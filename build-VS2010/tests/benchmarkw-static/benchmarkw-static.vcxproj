@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\..\tests\benchmark\benchmark.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{924F16A3-E2FF-40FF-BAAE-5C0535631FF3}</ProjectGuid>
     <RootNamespace>benchmarkw-static</RootNamespace>
   </PropertyGroup>

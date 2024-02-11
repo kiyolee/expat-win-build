@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B06EB4F6-6CDB-4D42-81B7-CB32376CA26E}</ProjectGuid>
     <RootNamespace>runtests-static</RootNamespace>
   </PropertyGroup>

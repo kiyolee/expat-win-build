@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D9588641-4F8A-48E6-ADC1-45242E1EDEFA}</ProjectGuid>
     <RootNamespace>runtests_cxxw</RootNamespace>
   </PropertyGroup>

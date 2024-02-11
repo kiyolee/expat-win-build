@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{82240291-AA6D-4EFA-8561-A0740F594A35}</ProjectGuid>
     <RootNamespace>runtestsw-static</RootNamespace>
   </PropertyGroup>
