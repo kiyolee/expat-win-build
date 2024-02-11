@@ -125,7 +125,7 @@ main(int argc, char *argv[]) {
     return 3;
   }
 
-  XMLBuf = malloc(fileAttr.st_size);
+  XMLBuf = (char *) malloc(fileAttr.st_size);
   if (XMLBuf == NULL) {
     fclose(file); // NOTE: this closes fd as well
     fprintf(stderr, "ouf of memory.\n");

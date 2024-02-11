@@ -50,12 +50,14 @@
 
 #include <stddef.h>
 #include <string.h> /* memcpy */
+#if ! defined(__cplusplus)
 #if defined(_MSC_VER) && _MSC_VER < 1800
 typedef int bool;
 #define true 1
 #define false 0
 #else
 #include <stdbool.h>
+#endif
 #endif
 
 #ifdef _WIN32
