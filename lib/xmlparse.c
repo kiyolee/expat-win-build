@@ -1,4 +1,4 @@
-/* 628e24d4966bedbd4800f6ed128d06d29703765b4bce12d3b7f099f90f842fc9 (2.6.0+)
+/* dd2a9703e301882afe16d198a82689ab225277057f5eab9d079d8606eab736b4 (2.6.1+)
                             __  __            _
                          ___\ \/ /_ __   __ _| |_
                         / _ \\  /| '_ \ / _` | __|
@@ -38,7 +38,7 @@
    Copyright (c) 2022      Jann Horn <jannh@google.com>
    Copyright (c) 2022      Sean McBride <sean@rogue-research.com>
    Copyright (c) 2023      Owain Davies <owaind@bath.edu>
-   Copyright (c) 2023      Sony Corporation / Snild Dolkow <snild@sony.com>
+   Copyright (c) 2023-2024 Sony Corporation / Snild Dolkow <snild@sony.com>
    Licensed under the MIT license:
 
    Permission is  hereby granted,  free of charge,  to any  person obtaining
@@ -210,7 +210,7 @@ typedef char ICHAR;
 #endif
 
 /* Round up n to be a multiple of sz, where sz is a power of 2. */
-#define ROUND_UP(n, sz) (((n) + ((sz)-1)) & ~((sz)-1))
+#define ROUND_UP(n, sz) (((n) + ((sz) - 1)) & ~((sz) - 1))
 
 /* Do safe (NULL-aware) pointer arithmetic */
 #define EXPAT_SAFE_PTR_DIFF(p, q) (((p) && (q)) ? ((p) - (q)) : 0)
@@ -248,7 +248,7 @@ static void copy_salt_to_sipkey(XML_Parser parser, struct sipkey *key);
    it odd, since odd numbers are always relative prime to a power of 2.
 */
 #define SECOND_HASH(hash, mask, power)                                         \
-  ((((hash) & ~(mask)) >> ((power)-1)) & ((mask) >> 2))
+  ((((hash) & ~(mask)) >> ((power) - 1)) & ((mask) >> 2))
 #define PROBE_STEP(hash, mask, power)                                          \
   ((unsigned char)((SECOND_HASH(hash, mask, power)) | 1))
 
@@ -629,8 +629,7 @@ static unsigned long getDebugLevel(const char *variableName,
        ? 0                                                                     \
        : ((*((pool)->ptr)++ = c), 1))
 
-XML_Bool g_reparseDeferralEnabledDefault = XML_TRUE; // write ONLY in runtests.c
-unsigned int g_parseAttempts = 0;                    // used for testing only
+EXPAT_INTERNAL_API XML_Bool g_reparseDeferralEnabledDefault = XML_TRUE; // write ONLY in runtests.c
 
 struct XML_ParserStruct {
   /* The first member must be m_userData so that the XML_GetUserData
@@ -748,6 +747,7 @@ struct XML_ParserStruct {
   ACCOUNTING m_accounting;
   ENTITY_STATS m_entity_stats;
 #endif
+  unsigned int m_bytesScanned; // used for testing only
 };
 
 #define MALLOC(parser, s) (parser->m_mem.malloc_fcn((s)))
@@ -1017,7 +1017,7 @@ callProcessor(XML_Parser parser, const char *start, const char *end,
       return XML_ERROR_NONE;
     }
   }
-  g_parseAttempts += 1;
+  parser->m_bytesScanned += (unsigned)have_now;
   const enum XML_Error ret = parser->m_processor(parser, start, end, endPtr);
   if (ret == XML_ERROR_NONE) {
     // if we consumed nothing, remember what we had on this parse attempt.
@@ -1259,6 +1259,7 @@ parserInit(XML_Parser parser, const XML_Char *encodingName) {
   memset(&parser->m_entity_stats, 0, sizeof(ENTITY_STATS));
   parser->m_entity_stats.debugLevel = getDebugLevel("EXPAT_ENTITY_DEBUG", 0u);
 #endif
+  parser->m_bytesScanned = 0;
 }
 
 /* moves list of bindings to m_freeBindingList */
@@ -8525,4 +8526,17 @@ getDebugLevel(const char *variableName, unsigned long defaultDebugLevel) {
   }
 
   return debugLevel;
+}
+
+EXPAT_INTERNAL_API void
+testingResetBytesScanned(XML_Parser parser) {
+    if (parser)
+        parser->m_bytesScanned = 0;
+}
+
+EXPAT_INTERNAL_API unsigned int
+testingGetBytesScanned(XML_Parser parser) {
+    if (! parser)
+        return 0;
+    return parser->m_bytesScanned;
 }
