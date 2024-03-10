@@ -654,6 +654,9 @@ static unsigned long getDebugLevel(const char *variableName,
        ? 0                                                                     \
        : ((*((pool)->ptr)++ = c), 1))
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API XML_Bool g_reparseDeferralEnabledDefault = XML_TRUE; // write ONLY in runtests.c
 
 struct XML_ParserStruct {
@@ -9198,12 +9201,18 @@ getDebugLevel(const char *variableName, unsigned long defaultDebugLevel) {
   return debugLevel;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void
 testingResetBytesScanned(XML_Parser parser) {
     if (parser)
         parser->m_bytesScanned = 0;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API unsigned int
 testingGetBytesScanned(XML_Parser parser) {
     if (! parser)
