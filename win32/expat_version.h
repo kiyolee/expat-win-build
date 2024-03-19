@@ -1,4 +1,4 @@
-#define EXPAT_VERSION_STR   "2.6.1"
+#define EXPAT_VERSION_STR   "2.6.2"
 #define EXPAT_VER_MAJOR     2
 #define EXPAT_VER_MINOR     6
-#define EXPAT_VER_REVISION  1
+#define EXPAT_VER_REVISION  2
