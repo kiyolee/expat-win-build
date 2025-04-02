@@ -26,7 +26,7 @@ BEGIN
       VALUE "FileDescription",	"libexpat for Windows\0"
       VALUE "FileVersion",	EXPAT_VERSION_STR "\0"
       VALUE "InternalName",	"libexpat.dll\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2001-2024 Expat maintainers.\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2001-2025 Expat maintainers.\0"
       VALUE "OriginalFilename",	"libexpat.dll\0"
       VALUE "ProductName",	"EXPAT\0"
       VALUE "ProductVersion",	EXPAT_VERSION_STR "\0"
