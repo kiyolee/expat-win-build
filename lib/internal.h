@@ -148,6 +148,11 @@
   100.0f
 #define EXPAT_BILLION_LAUGHS_ATTACK_PROTECTION_ACTIVATION_THRESHOLD_DEFAULT    \
   8388608 // 8 MiB, 2^23
+
+#define EXPAT_ALLOC_TRACKER_MAXIMUM_AMPLIFICATION_DEFAULT 100.0f
+#define EXPAT_ALLOC_TRACKER_ACTIVATION_THRESHOLD_DEFAULT                       \
+  67108864 // 64 MiB, 2^26
+
 /* NOTE END */
 
 #include "expat.h" // so we can use type XML_Parser below
@@ -175,6 +180,9 @@ EXPAT_INTERNAL_API const char *unsignedCharToPrintable(unsigned char c);
 
 #if defined(XML_TESTING)
 EXPAT_INTERNAL_API extern XML_Bool g_reparseDeferralEnabledDefault; // written ONLY in runtests.c
+EXPAT_INTERNAL_API void *expat_malloc(XML_Parser parser, size_t size, int sourceLine);
+EXPAT_INTERNAL_API void expat_free(XML_Parser parser, void *ptr, int sourceLine);
+EXPAT_INTERNAL_API void *expat_realloc(XML_Parser parser, void *ptr, size_t size, int sourceLine);
 EXPAT_INTERNAL_API extern void testingResetBytesScanned(XML_Parser parser);
 EXPAT_INTERNAL_API extern unsigned int testingGetBytesScanned(XML_Parser parser);
 #endif
