@@ -842,6 +842,9 @@ expat_heap_increase_tolerable(XML_Parser rootParser, XmlBigCount increase,
   return tolerable;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void *
 expat_malloc(XML_Parser parser, size_t size, int sourceLine) {
   // Detect integer overflow
@@ -892,6 +895,9 @@ expat_malloc(XML_Parser parser, size_t size, int sourceLine) {
   return (char *)mallocedPtr + sizeof(size_t);
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void
 expat_free(XML_Parser parser, void *ptr, int sourceLine) {
   assert(parser != NULL);
@@ -923,6 +929,9 @@ expat_free(XML_Parser parser, void *ptr, int sourceLine) {
   parser->m_mem.free_fcn(mallocedPtr);
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void *
 expat_realloc(XML_Parser parser, void *ptr, size_t size, int sourceLine) {
   assert(parser != NULL);
