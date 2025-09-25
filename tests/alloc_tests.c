@@ -48,7 +48,9 @@
 #endif
 
 #include <math.h> /* NAN, INFINITY */
+#if ! defined(__cplusplus)
 #include <stdbool.h>
+#endif
 #include <stdint.h> /* for SIZE_MAX */
 #include <string.h>
 #include <assert.h>
