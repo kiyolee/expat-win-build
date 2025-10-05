@@ -1,4 +1,4 @@
-/* 60e137abb91af642d6c3988f8f133d23329b32638659c74d47125fc0faf6ddd5 (2.7.2+)
+/* 28bcd8b1ba7eb595d82822908257fd9c3589b4243e3c922d0369f35bfcd7b506 (2.7.3+)
                             __  __            _
                          ___\ \/ /_ __   __ _| |_
                         / _ \\  /| '_ \ / _` | __|
@@ -41,6 +41,7 @@
    Copyright (c) 2023-2024 Sony Corporation / Snild Dolkow <snild@sony.com>
    Copyright (c) 2024-2025 Berkay Eren Ürün <berkay.ueruen@siemens.com>
    Copyright (c) 2024      Hanno Böck <hanno@gentoo.org>
+   Copyright (c) 2025      Matthew Fernandez <matthew.fernandez@gmail.com>
    Licensed under the MIT license:
 
    Permission is  hereby granted,  free of charge,  to any  person obtaining
@@ -840,14 +841,14 @@ expat_heap_increase_tolerable(XML_Parser rootParser, XmlBigCount increase,
 EXPAT_INTERNAL_API void *
 expat_malloc(XML_Parser parser, size_t size, int sourceLine) {
   // Detect integer overflow
-  if (SIZE_MAX - size < sizeof(size_t)) {
+  if (SIZE_MAX - size < sizeof(size_t) + EXPAT_MALLOC_PADDING) {
     return NULL;
   }
 
   const XML_Parser rootParser = getRootParserOf(parser, NULL);
   assert(rootParser->m_parentParser == NULL);
 
-  const size_t bytesToAllocate = sizeof(size_t) + size;
+  const size_t bytesToAllocate = sizeof(size_t) + EXPAT_MALLOC_PADDING + size;
 
   if ((XmlBigCount)-1 - rootParser->m_alloc_tracker.bytesAllocated
       < bytesToAllocate) {
@@ -884,7 +885,7 @@ expat_malloc(XML_Parser parser, size_t size, int sourceLine) {
                     rootParser->m_alloc_tracker.peakBytesAllocated, sourceLine);
   }
 
-  return (char *)mallocedPtr + sizeof(size_t);
+  return (char *)mallocedPtr + sizeof(size_t) + EXPAT_MALLOC_PADDING;
 }
 
 EXPAT_INTERNAL_API void
@@ -900,8 +901,9 @@ expat_free(XML_Parser parser, void *ptr, int sourceLine) {
 
   // Extract size (to the eyes of malloc_fcn/realloc_fcn) and
   // the original pointer returned by malloc/realloc
-  void *const mallocedPtr = (char *)ptr - sizeof(size_t);
-  const size_t bytesAllocated = sizeof(size_t) + *(size_t *)mallocedPtr;
+  void *const mallocedPtr = (char *)ptr - EXPAT_MALLOC_PADDING - sizeof(size_t);
+  const size_t bytesAllocated
+      = sizeof(size_t) + EXPAT_MALLOC_PADDING + *(size_t *)mallocedPtr;
 
   // Update accounting
   assert(rootParser->m_alloc_tracker.bytesAllocated >= bytesAllocated);
@@ -936,7 +938,7 @@ expat_realloc(XML_Parser parser, void *ptr, size_t size, int sourceLine) {
 
   // Extract original size (to the eyes of the caller) and the original
   // pointer returned by malloc/realloc
-  void *mallocedPtr = (char *)ptr - sizeof(size_t);
+  void *mallocedPtr = (char *)ptr - EXPAT_MALLOC_PADDING - sizeof(size_t);
   const size_t prevSize = *(size_t *)mallocedPtr;
 
   // Classify upcoming change
@@ -951,8 +953,13 @@ expat_realloc(XML_Parser parser, void *ptr, size_t size, int sourceLine) {
     }
   }
 
+  // NOTE: Integer overflow detection has already been done for us
+  //       by expat_heap_increase_tolerable(..) above
+  assert(SIZE_MAX - sizeof(size_t) - EXPAT_MALLOC_PADDING >= size);
+
   // Actually allocate
-  mallocedPtr = parser->m_mem.realloc_fcn(mallocedPtr, sizeof(size_t) + size);
+  mallocedPtr = parser->m_mem.realloc_fcn(
+      mallocedPtr, sizeof(size_t) + EXPAT_MALLOC_PADDING + size);
 
   if (mallocedPtr == NULL) {
     return NULL;
@@ -983,7 +990,7 @@ expat_realloc(XML_Parser parser, void *ptr, size_t size, int sourceLine) {
   // Update in-block recorded size
   *(size_t *)mallocedPtr = size;
 
-  return (char *)mallocedPtr + sizeof(size_t);
+  return (char *)mallocedPtr + sizeof(size_t) + EXPAT_MALLOC_PADDING;
 }
 #endif // XML_GE == 1
 
@@ -1317,7 +1324,8 @@ parserCreate(const XML_Char *encodingName,
   XML_Parser parser = NULL;
 
 #if XML_GE == 1
-  const size_t increase = sizeof(size_t) + sizeof(struct XML_ParserStruct);
+  const size_t increase
+      = sizeof(size_t) + EXPAT_MALLOC_PADDING + sizeof(struct XML_ParserStruct);
 
   if (parentParser != NULL) {
     const XML_Parser rootParser = getRootParserOf(parentParser, NULL);
@@ -1332,11 +1340,13 @@ parserCreate(const XML_Char *encodingName,
   if (memsuite) {
     XML_Memory_Handling_Suite *mtemp;
 #if XML_GE == 1
-    void *const sizeAndParser = memsuite->malloc_fcn(
-        sizeof(size_t) + sizeof(struct XML_ParserStruct));
+    void *const sizeAndParser
+        = memsuite->malloc_fcn(sizeof(size_t) + EXPAT_MALLOC_PADDING
+                               + sizeof(struct XML_ParserStruct));
     if (sizeAndParser != NULL) {
       *(size_t *)sizeAndParser = sizeof(struct XML_ParserStruct);
-      parser = (XML_Parser)((char *)sizeAndParser + sizeof(size_t));
+      parser = (XML_Parser)((char *)sizeAndParser + sizeof(size_t)
+                            + EXPAT_MALLOC_PADDING);
 #else
     parser = memsuite->malloc_fcn(sizeof(struct XML_ParserStruct));
     if (parser != NULL) {
@@ -1349,11 +1359,12 @@ parserCreate(const XML_Char *encodingName,
   } else {
     XML_Memory_Handling_Suite *mtemp;
 #if XML_GE == 1
-    void *const sizeAndParser
-        = malloc(sizeof(size_t) + sizeof(struct XML_ParserStruct));
+    void *const sizeAndParser = malloc(sizeof(size_t) + EXPAT_MALLOC_PADDING
+                                       + sizeof(struct XML_ParserStruct));
     if (sizeAndParser != NULL) {
       *(size_t *)sizeAndParser = sizeof(struct XML_ParserStruct);
-      parser = (XML_Parser)((char *)sizeAndParser + sizeof(size_t));
+      parser = (XML_Parser)((char *)sizeAndParser + sizeof(size_t)
+                            + EXPAT_MALLOC_PADDING);
 #else
     parser = malloc(sizeof(struct XML_ParserStruct));
     if (parser != NULL) {
@@ -6418,6 +6429,10 @@ internalEntityProcessor(XML_Parser parser, const char *s, const char *end,
     // process its possible inner entities (which are added to the
     // m_openInternalEntities during doProlog or doContent calls above)
     entity->hasMore = XML_FALSE;
+    if (! entity->is_param
+        && (openEntity->startTagLevel != parser->m_tagLevel)) {
+      return XML_ERROR_ASYNC_ENTITY;
+    }
     triggerReenter(parser);
     return result;
   } // End of entity processing, "if" block will return here
@@ -8116,7 +8131,7 @@ poolGrow(STRING_POOL *pool) {
     if (bytesToAllocate == 0)
       return XML_FALSE;
 
-    temp = REALLOC(pool->parser, pool->blocks, (unsigned)bytesToAllocate);
+    temp = REALLOC(pool->parser, pool->blocks, bytesToAllocate);
     if (temp == NULL)
       return XML_FALSE;
     pool->blocks = temp;
