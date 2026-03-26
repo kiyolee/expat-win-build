@@ -2,7 +2,7 @@
 
 expat Windows build with Visual Studio.
 
-This version is expat-2.7.4.
+This version is expat-2.7.5.
 
 To build, simply open the required solution file, and
 you know how to use Visual Studio, right?
