@@ -2139,7 +2139,7 @@ START_TEST(test_alloc_tracker_pointer_alignment) {
   XML_Parser parser = XML_ParserCreate(NULL);
 #if XML_GE == 1
   assert_true(sizeof(long long) >= sizeof(size_t)); // self-test
-  long long *const ptr = expat_malloc(parser, 4 * sizeof(long long), -1);
+  long long *const ptr = (long long *) expat_malloc(parser, 4 * sizeof(long long), -1);
   ptr[0] = 0LL;
   ptr[1] = 1LL;
   ptr[2] = 2LL;

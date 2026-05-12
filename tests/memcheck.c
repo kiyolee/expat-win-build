@@ -56,7 +56,7 @@ static AllocationEntry *find_allocation(const void *ptr);
 /* Allocate some memory and keep track of it. */
 void *
 tracking_malloc(size_t size) {
-  AllocationEntry *const entry = malloc(sizeof(AllocationEntry));
+  AllocationEntry *const entry = (AllocationEntry *) malloc(sizeof(AllocationEntry));
 
   if (entry == NULL) {
     printf("Allocator failure\n");
@@ -142,7 +142,7 @@ tracking_realloc(void *ptr, size_t size) {
   entry = find_allocation(ptr);
   if (entry == NULL) {
     printf("Attempting to realloc unallocated memory at %p\n", ptr);
-    entry = malloc(sizeof(AllocationEntry));
+    entry = (AllocationEntry *) malloc(sizeof(AllocationEntry));
     if (entry == NULL) {
       printf("Reallocator failure\n");
       return NULL;

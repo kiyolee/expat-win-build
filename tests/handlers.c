@@ -428,7 +428,7 @@ int XMLCALL
 external_entity_optioner(XML_Parser parser, const XML_Char *context,
                          const XML_Char *base, const XML_Char *systemId,
                          const XML_Char *publicId) {
-  ExtOption *options = XML_GetUserData(parser);
+  ExtOption *options = (ExtOption *) XML_GetUserData(parser);
   XML_Parser ext_parser;
 
   UNUSED_P(base);
@@ -454,7 +454,7 @@ int XMLCALL
 external_entity_loader(XML_Parser parser, const XML_Char *context,
                        const XML_Char *base, const XML_Char *systemId,
                        const XML_Char *publicId) {
-  ExtTest *test_data = XML_GetUserData(parser);
+  ExtTest *test_data = (ExtTest *) XML_GetUserData(parser);
   XML_Parser extparser;
 
   UNUSED_P(base);
@@ -482,7 +482,7 @@ external_entity_faulter(XML_Parser parser, const XML_Char *context,
                         const XML_Char *base, const XML_Char *systemId,
                         const XML_Char *publicId) {
   XML_Parser ext_parser;
-  ExtFaults *fault = XML_GetUserData(parser);
+  ExtFaults *fault = (ExtFaults *) XML_GetUserData(parser);
 
   UNUSED_P(base);
   UNUSED_P(systemId);
@@ -655,7 +655,7 @@ external_entity_suspending_faulter(XML_Parser parser, const XML_Char *context,
                                    const XML_Char *systemId,
                                    const XML_Char *publicId) {
   XML_Parser ext_parser;
-  ExtFaults *fault = XML_GetUserData(parser);
+  ExtFaults *fault = (ExtFaults *) XML_GetUserData(parser);
   void *buffer;
   int parse_len = (int)strlen(fault->parse_text);
 
@@ -986,7 +986,7 @@ external_entity_valuer(XML_Parser parser, const XML_Char *context,
         == XML_STATUS_ERROR)
       xml_failure(ext_parser);
   } else if (! xcstrcmp(systemId, XCS("004-2.ent"))) {
-    ExtFaults *fault = XML_GetUserData(parser);
+    ExtFaults *fault = (ExtFaults *) XML_GetUserData(parser);
     enum XML_Status status;
     enum XML_Error error;
 
@@ -1088,7 +1088,7 @@ int XMLCALL
 external_entity_public(XML_Parser parser, const XML_Char *context,
                        const XML_Char *base, const XML_Char *systemId,
                        const XML_Char *publicId) {
-  const char *text1 = XML_GetUserData(parser);
+  const char *text1 = (const char *) XML_GetUserData(parser);
   const char *text2 = "<!ATTLIST doc a CDATA 'value'>";
   const char *text = NULL;
   XML_Parser ext_parser;
@@ -1144,7 +1144,7 @@ int XMLCALL
 external_entity_oneshot_loader(XML_Parser parser, const XML_Char *context,
                                const XML_Char *base, const XML_Char *systemId,
                                const XML_Char *publicId) {
-  ExtHdlrData *test_data = XML_GetUserData(parser);
+  ExtHdlrData *test_data = (ExtHdlrData *) XML_GetUserData(parser);
   XML_Parser ext_parser;
 
   UNUSED_P(base);
@@ -1169,7 +1169,7 @@ int XMLCALL
 external_entity_loader2(XML_Parser parser, const XML_Char *context,
                         const XML_Char *base, const XML_Char *systemId,
                         const XML_Char *publicId) {
-  ExtTest2 *test_data = XML_GetUserData(parser);
+  ExtTest2 *test_data = (ExtTest2 *) XML_GetUserData(parser);
   XML_Parser extparser;
 
   UNUSED_P(base);
@@ -1196,7 +1196,7 @@ int XMLCALL
 external_entity_faulter2(XML_Parser parser, const XML_Char *context,
                          const XML_Char *base, const XML_Char *systemId,
                          const XML_Char *publicId) {
-  ExtFaults2 *test_data = XML_GetUserData(parser);
+  ExtFaults2 *test_data = (ExtFaults2 *) XML_GetUserData(parser);
   XML_Parser extparser;
 
   UNUSED_P(base);
@@ -1314,7 +1314,7 @@ int XMLCALL
 external_entity_dbl_handler(XML_Parser parser, const XML_Char *context,
                             const XML_Char *base, const XML_Char *systemId,
                             const XML_Char *publicId) {
-  int *pcallno = XML_GetUserData(parser);
+  int *pcallno = (int *)XML_GetUserData(parser);
   int callno = *pcallno;
   const char *text;
   XML_Parser new_parser = NULL;
@@ -1371,7 +1371,7 @@ int XMLCALL
 external_entity_dbl_handler_2(XML_Parser parser, const XML_Char *context,
                               const XML_Char *base, const XML_Char *systemId,
                               const XML_Char *publicId) {
-  int *pcallno = XML_GetUserData(parser);
+  int *pcallno = (int *) XML_GetUserData(parser);
   int callno = *pcallno;
   const char *text;
   XML_Parser new_parser;
@@ -1466,7 +1466,7 @@ int XMLCALL
 external_entity_alloc(XML_Parser parser, const XML_Char *context,
                       const XML_Char *base, const XML_Char *systemId,
                       const XML_Char *publicId) {
-  const char *text = XML_GetUserData(parser);
+  const char *text = (const char *) XML_GetUserData(parser);
   XML_Parser ext_parser;
   int parse_res;
 
@@ -1521,7 +1521,7 @@ accounting_external_entity_ref_handler(XML_Parser parser,
   UNUSED_P(base);
   UNUSED_P(publicId);
 
-  const struct AccountingTestCase *const testCase = XML_GetUserData(parser);
+  const struct AccountingTestCase *const testCase = (const struct AccountingTestCase *) XML_GetUserData(parser);
 
   const char *externalText = NULL;
   if (xcstrcmp(systemId, XCS("first.ent")) == 0) {

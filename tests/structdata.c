@@ -63,7 +63,7 @@
 static XML_Char *
 xmlstrdup(const XML_Char *s) {
   size_t byte_count = (xcstrlen(s) + 1) * sizeof(XML_Char);
-  XML_Char *const dup = malloc(byte_count);
+  XML_Char *const dup = (XML_Char *) malloc(byte_count);
 
   assert(dup != NULL);
   memcpy(dup, s, byte_count);
@@ -89,7 +89,7 @@ StructData_AddItem(StructData *storage, const XML_Char *s, int data0, int data1,
     StructDataEntry *new_entries;
 
     storage->max_count += STRUCT_EXTENSION_COUNT;
-    new_entries = realloc(storage->entries,
+    new_entries = (StructDataEntry *) realloc(storage->entries,
                           storage->max_count * sizeof(StructDataEntry));
     assert(new_entries != NULL);
     storage->entries = new_entries;
