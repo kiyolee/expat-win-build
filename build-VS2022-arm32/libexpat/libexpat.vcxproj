@@ -60,6 +60,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lib\random_rand_s.c" />
     <ClCompile Include="..\..\lib\xmlparse.c" />
     <ClCompile Include="..\..\lib\xmlrole.c" />
     <ClCompile Include="..\..\lib\xmltok.c" />

@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\lib\xmltok.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lib\random_rand_s.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\lib\libexpatw.def">

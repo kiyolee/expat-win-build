@@ -24,5 +24,8 @@
     <ClCompile Include="..\..\lib\xmlparse.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lib\random_rand_s.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
