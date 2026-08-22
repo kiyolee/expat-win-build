@@ -47,16 +47,9 @@
 #include <string.h>
 
 #include "chardata.h"
-#include "msvc_snprintf.h"
+#include "../lib/xcsinc.c"
 
-static int
-xmlstrlen(const XML_Char *s) {
-  int len = 0;
-  assert(s != NULL);
-  while (s[len] != 0)
-    ++len;
-  return len;
-}
+#include "msvc_snprintf.h"
 
 void
 CharData_Init(CharData *storage) {
@@ -74,7 +67,7 @@ CharData_AppendXMLChars(CharData *storage, const XML_Char *s, int len) {
   if (storage->count < 0)
     storage->count = 0;
   if (len < 0)
-    len = xmlstrlen(s);
+    len = (int)xcslen(s);
   if ((len + storage->count) > maxchars) {
     len = (maxchars - storage->count);
   }
@@ -86,7 +79,7 @@ CharData_AppendXMLChars(CharData *storage, const XML_Char *s, int len) {
 
 int
 CharData_CheckXMLChars(CharData *storage, const XML_Char *expected) {
-  int len = xmlstrlen(expected);
+  int len = (int)xcslen(expected);
   int count;
 
   assert(storage != NULL);
