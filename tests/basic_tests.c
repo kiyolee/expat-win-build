@@ -58,7 +58,9 @@
 
 #include <assert.h>
 #include <limits.h> // ULONG_MAX
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -4151,7 +4153,7 @@ external_bom_checker(XML_Parser parser, const XML_Char *context,
     fail("Could not create external entity parser");
 
   if (! xcstrcmp(systemId, XCS("004-2.ent"))) {
-    struct bom_testdata *const testdata = XML_GetUserData(parser);
+    struct bom_testdata *const testdata = (struct bom_testdata *) XML_GetUserData(parser);
     const char *const external = testdata->external;
     const int split = testdata->split;
     testdata->nested_callback_happened = XML_TRUE;
@@ -6247,7 +6249,7 @@ START_TEST(test_deep_nested_entity) {
   const size_t N_LINES = 60000;
   const size_t SIZE_PER_LINE = 50;
 
-  char *const text = malloc((N_LINES + 4) * SIZE_PER_LINE);
+  char *const text = (char *) malloc((N_LINES + 4) * SIZE_PER_LINE);
   if (text == NULL) {
     fail("malloc failed");
   }
@@ -6293,7 +6295,7 @@ START_TEST(test_deep_nested_attribute_entity) {
   const size_t N_LINES = 60000;
   const size_t SIZE_PER_LINE = 100;
 
-  char *const text = malloc((N_LINES + 4) * SIZE_PER_LINE);
+  char *const text = (char *) malloc((N_LINES + 4) * SIZE_PER_LINE);
   if (text == NULL) {
     fail("malloc failed");
   }
@@ -6336,7 +6338,7 @@ START_TEST(test_deep_nested_entity_delayed_interpretation) {
   const size_t N_LINES = 70000;
   const size_t SIZE_PER_LINE = 100;
 
-  char *const text = malloc((N_LINES + 4) * SIZE_PER_LINE);
+  char *const text = (char *) malloc((N_LINES + 4) * SIZE_PER_LINE);
   if (text == NULL) {
     fail("malloc failed");
   }
@@ -6817,7 +6819,7 @@ START_TEST(test_bypass_heuristic_when_close_to_bufsize) {
   }
 
   const int document_length = 65536;
-  char *const document = malloc(document_length);
+  char *const document = (char *) malloc(document_length);
   assert_true(document != NULL);
 
   const XML_Memory_Handling_Suite memfuncs = {
@@ -6928,7 +6930,7 @@ START_TEST(test_varying_buffer_fills) {
     return; // this test is slow, and doesn't use _XML_Parse_SINGLE_BYTES().
   }
 
-  char *const document = malloc(document_length);
+  char *const document = (char *) malloc(document_length);
   assert_true(document != NULL);
   memset(document, 'x', document_length);
   document[0] = '<';
