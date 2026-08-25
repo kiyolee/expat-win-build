@@ -827,9 +827,16 @@ struct XML_ParserStruct {
 static void
 expat_heap_stat(XML_Parser rootParser, char operator, XmlBigCount absDiff,
                 XmlBigCount newTotal, XmlBigCount peakTotal, int sourceLine) {
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4723) // potential divide by 0
+#endif
   // NOTE: This can be +infinity or -nan
   const float amplification
       = (float)newTotal / (float)rootParser->m_accounting.countBytesDirect;
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
   fprintf(
       stderr,
       "expat: Allocations(%p): Direct " EXPAT_FMT_ULL("10") ", allocated %c" EXPAT_FMT_ULL(
