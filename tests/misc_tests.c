@@ -848,7 +848,7 @@ typedef struct {
 
 static int XMLCALL
 reentrant_encoding_converter(void *userData, const char *s) {
-  EncodingCallbackData *const data = userData;
+  EncodingCallbackData *const data = (EncodingCallbackData *)userData;
   UNUSED_P(s);
   data->converterCallCount++;
   forbidden_calls_character_handler(data->parser, NULL, 0);
@@ -857,7 +857,7 @@ reentrant_encoding_converter(void *userData, const char *s) {
 
 static void XMLCALL
 reentrant_encoding_release(void *userData) {
-  EncodingCallbackData *const data = userData;
+  EncodingCallbackData *const data = (EncodingCallbackData *)userData;
   data->releaseCallCount++;
   forbidden_calls_character_handler(data->parser, NULL, 0);
 }
@@ -865,7 +865,7 @@ reentrant_encoding_release(void *userData) {
 static int XMLCALL
 reentrant_encoding_handler(void *userData, const XML_Char *name,
                            XML_Encoding *info) {
-  EncodingCallbackData *const data = userData;
+  EncodingCallbackData *const data = (EncodingCallbackData *)userData;
   UNUSED_P(name);
 
   for (int i = 0; i < 256; i++)
