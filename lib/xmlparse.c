@@ -1221,7 +1221,7 @@ callUnknownEncodingRelease(XML_Parser parser) {
 
 static int XMLCALL
 callUnknownEncodingConvert(void *data, const char *p) {
-  XML_Parser parser = data;
+  XML_Parser parser = (XML_Parser)data;
   beforeHandler(parser);
   const int result
       = parser->m_unknownEncodingConvert(parser->m_unknownEncodingData, p);

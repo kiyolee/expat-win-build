@@ -2815,7 +2815,7 @@ END_TEST
 static void XMLCALL
 check_second_attr_normalization(void *userData, const XML_Char *name,
                                 const XML_Char **atts) {
-  int *const seen_second = userData;
+  int *const seen_second = (int *)userData;
   UNUSED_P(name);
 
   for (size_t i = 0; atts[i] != NULL; i += 2) {
