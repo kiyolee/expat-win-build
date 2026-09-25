@@ -1899,7 +1899,7 @@ static char *
 utf16_dup_flipped(const char *text, size_t lenBytes) {
   assert_true(lenBytes < SIZE_MAX);
   assert_true(lenBytes % 2 == 0);
-  char *const buffer = malloc(lenBytes + 1);
+  char *const buffer = (char *) malloc(lenBytes + 1);
   assert_true(buffer != NULL);
 
   for (size_t i = 0; i < lenBytes; i++) {

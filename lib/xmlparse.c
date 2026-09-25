@@ -2249,6 +2249,9 @@ XML_SetParamEntityParsing(XML_Parser parser,
 
 /* The body of XML_SetHashSalt, so that Expat's own tests can reach it
    without tripping the deprecation of the public function. */
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API int
 xmlSetHashSalt(XML_Parser parser, unsigned long hash_salt) {
   if (parser == NULL)

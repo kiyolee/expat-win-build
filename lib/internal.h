@@ -56,6 +56,7 @@
 #if ! defined(INTERNAL_H)
 #  define INTERNAL_H 1
 
+#if ! defined(__cplusplus)
 #  ifndef XML_MIN_SIZE
 #    if ! defined(inline)
 #      ifdef __GNUC__
@@ -67,6 +68,7 @@
 #  ifndef inline
 #    define inline
 #  endif
+#endif
 
 #  if ! defined(XML_NONTESTING_STATIC)
 #    if defined(XML_TESTING)
@@ -141,6 +143,10 @@ union expat_align {
 #define EXPAT_INTERNAL_API
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 EXPAT_INTERNAL_API void _INTERNAL_trim_to_complete_utf8_characters(const char *from,
                                                 const char **fromLimRef);
 
@@ -162,5 +168,9 @@ EXPAT_INTERNAL_API void *expat_realloc(XML_Parser parser, void *ptr, size_t size
 EXPAT_INTERNAL_API extern void testingResetBytesScanned(XML_Parser parser);
 EXPAT_INTERNAL_API extern unsigned int testingGetBytesScanned(XML_Parser parser);
 #  endif
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif // not defined INTERNAL_H

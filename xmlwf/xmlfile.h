@@ -35,7 +35,9 @@
    SPDX-License-Identifier: MIT
 */
 
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 
 #define XML_MAP_FILE 01
 #define XML_EXTERNAL_ENTITIES 02

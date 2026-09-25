@@ -38,7 +38,9 @@ __  __            _
 #include "hash_table.h"
 #include "minicheck.h"
 
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 #include <string.h> // for memcmp
 
 START_TEST(test_hash_table) {

@@ -305,5 +305,5 @@ XML_ProcessFile(XML_Parser parser, const XML_Char *filename, unsigned flags) {
     }
   } else
     result = processStream(filename, parser);
-  return (bool)result;
+  return result != 0;
 }
