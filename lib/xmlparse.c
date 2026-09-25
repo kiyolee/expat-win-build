@@ -7938,6 +7938,9 @@ copyEntityTable(XML_Parser oldParser, HASH_TABLE *newTable,
 // Compares two strings `s1` and `s2` whereas:
 // - `s2` is zero-terminated but
 // - `s1` is made up of exactly (not just up to) `s1len` non-zero characters.
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API XML_Bool
 keyeq(KEY s1, size_t s1len, KEY s2) {
 #ifdef XML_UNICODE
@@ -7955,6 +7958,9 @@ keyeq(KEY s1, size_t s1len, KEY s2) {
 #endif
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API size_t
 keylen(KEY s) {
   return xcslen(s);
@@ -7998,6 +8004,9 @@ hash(XML_Parser parser, KEY s, size_t keyLen) {
 //       read-write mode does, because keys can be re-hashed later and the
 //       hash table does not store key length information.
 //
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API NAMED *
 lookupWithLength(XML_Parser parser, HASH_TABLE *table, KEY name, size_t nameLen,
                  size_t createSize) {
@@ -8105,11 +8114,17 @@ lookupWithLength(XML_Parser parser, HASH_TABLE *table, KEY name, size_t nameLen,
 // be used to tell cases "existed and found" and "newly inserted" apart
 // with the structure returned.
 //
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API NAMED *
 lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize) {
   return lookupWithLength(parser, table, name, keylen(name), createSize);
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void
 hashTableClear(HASH_TABLE *table) {
   size_t i;
@@ -8120,6 +8135,9 @@ hashTableClear(HASH_TABLE *table) {
   table->used = 0;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void
 hashTableDestroy(HASH_TABLE *table) {
   size_t i;
@@ -8128,6 +8146,9 @@ hashTableDestroy(HASH_TABLE *table) {
   FREE(table->parser, table->v);
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void
 hashTableInit(HASH_TABLE *p, XML_Parser parser) {
   p->power = 0;
@@ -8137,12 +8158,18 @@ hashTableInit(HASH_TABLE *p, XML_Parser parser) {
   p->parser = parser;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API void
 hashTableIterInit(HASH_TABLE_ITER *iter, const HASH_TABLE *table) {
   iter->p = table->v;
   iter->end = iter->p ? iter->p + table->size : NULL;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API NAMED *
 hashTableIterNext(HASH_TABLE_ITER *iter) {
   while (iter->p != iter->end) {

@@ -58,6 +58,10 @@ typedef struct {
   NAMED **end;
 } HASH_TABLE_ITER;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 EXPAT_INTERNAL_API NAMED *lookupWithLength(XML_Parser parser,
                                               HASH_TABLE *table, KEY name,
                                               size_t nameLen,
@@ -74,5 +78,9 @@ EXPAT_INTERNAL_API NAMED *hashTableIterNext(HASH_TABLE_ITER *iter);
 
 EXPAT_INTERNAL_API XML_Bool keyeq(KEY s1, size_t s1len, KEY s2);
 EXPAT_INTERNAL_API size_t keylen(KEY s);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif // ! defined(HASH_TABLE_H)
