@@ -36,6 +36,9 @@
     <ClCompile Include="..\..\..\tests\handlers.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\hash_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\tests\memcheck.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,13 +54,16 @@
     <ClCompile Include="..\..\..\tests\ns_tests.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\props_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\tests\runtests.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\tests\structdata.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\tests\hash_tests.c">
+    <ClCompile Include="..\..\..\tests\xcs_tests.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

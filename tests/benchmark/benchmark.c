@@ -8,7 +8,7 @@
 
    Copyright (c) 2003-2006 Karl Waclawek <karl@waclawek.net>
    Copyright (c) 2005-2007 Steven Solie <steven@solie.ca>
-   Copyright (c) 2017-2025 Sebastian Pipping <sebastian@pipping.org>
+   Copyright (c) 2017-2026 Sebastian Pipping <sebastian@pipping.org>
    Copyright (c) 2017      Rhodri James <rhodri@wildebeest.org.uk>
    Licensed under the MIT license:
 
@@ -40,7 +40,8 @@
 #  include <unistd.h> // close
 #endif
 
-#include <fcntl.h> // open
+#include <inttypes.h> // PRIu64
+#include <fcntl.h>    // open
 #include <sys/stat.h>
 #include <assert.h>
 #include <stddef.h> // ptrdiff_t
@@ -52,12 +53,6 @@
 #  define open _open
 #  define close _close
 #  define fdopen _fdopen
-#endif
-
-#ifdef XML_LARGE_SIZE
-#  define XML_FMT_INT_MOD "ll"
-#else
-#  define XML_FMT_INT_MOD "l"
 #endif
 
 #ifdef XML_UNICODE_WCHAR_T
@@ -154,11 +149,11 @@ main(int argc, char *argv[]) {
       assert(parseBufferSize <= (ptrdiff_t)bufferSize);
       if (! XML_Parse(parser, XMLBufPtr, (int)parseBufferSize, isFinal)) {
         fprintf(stderr,
-                "error '%" XML_FMT_STR "' at line %" XML_FMT_INT_MOD
-                "u character %" XML_FMT_INT_MOD "u\n",
+                "error '%" XML_FMT_STR "' at line %" PRIu64
+                " character %" PRIu64 "\n",
                 XML_ErrorString(XML_GetErrorCode(parser)),
-                XML_GetCurrentLineNumber(parser),
-                XML_GetCurrentColumnNumber(parser));
+                XML_GetCurrentLineNumber64(parser),
+                XML_GetCurrentColumnNumber64(parser));
         free(XMLBuf);
         XML_ParserFree(parser);
         return 4;

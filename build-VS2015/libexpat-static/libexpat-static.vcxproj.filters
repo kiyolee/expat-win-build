@@ -15,16 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\xmlrole.c">
+    <ClCompile Include="..\..\lib\random_rand_s.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\xmltok.c">
+    <ClCompile Include="..\..\lib\xcs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\xmlparse.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\random_rand_s.c">
+    <ClCompile Include="..\..\lib\xmlrole.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\xmltok.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -18,12 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\xmlwf\codepage.c" />
-    <ClCompile Include="..\..\xmlwf\readfilemap.c" />
-    <ClCompile Include="..\..\xmlwf\xmlfile.c" />
-    <ClCompile Include="..\..\xmlwf\xmlwf.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{15F8385E-A8F5-4656-8AD6-C1FB24DD7F39}</ProjectGuid>
@@ -99,6 +93,13 @@
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\lib\xcs.c" />
+    <ClCompile Include="..\..\xmlwf\codepage.c" />
+    <ClCompile Include="..\..\xmlwf\readfilemap.c" />
+    <ClCompile Include="..\..\xmlwf\xmlfile.c" />
+    <ClCompile Include="..\..\xmlwf\xmlwf.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

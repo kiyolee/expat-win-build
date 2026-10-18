@@ -10,12 +10,6 @@
       <Platform>ARM</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\xmlwf\codepage.c" />
-    <ClCompile Include="..\..\xmlwf\readfilemap.c" />
-    <ClCompile Include="..\..\xmlwf\xmlfile.c" />
-    <ClCompile Include="..\..\xmlwf\xmlwf.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{C36501A4-88F6-4677-8580-B24011500392}</ProjectGuid>
@@ -61,6 +55,12 @@
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\xmlwf\codepage.c" />
+    <ClCompile Include="..\..\xmlwf\readfilemap.c" />
+    <ClCompile Include="..\..\xmlwf\xmlfile.c" />
+    <ClCompile Include="..\..\xmlwf\xmlwf.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
