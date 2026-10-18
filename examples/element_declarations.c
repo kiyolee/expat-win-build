@@ -41,8 +41,19 @@
    SPDX-License-Identifier: MIT
 */
 
+#if defined(_MSC_VER) && _MSC_VER < 1700
+#define PRIu64 "llu"
+#ifdef _WIN64
+#define PRIuPTR "llu"
+#else
+#define PRIuPTR "lu"
+#endif
+#else
 #include <inttypes.h> // PRIu64, PRIuPTR
+#endif
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <expat.h>
@@ -65,7 +76,7 @@ typedef struct StackStruct {
 
 static Stack *
 stackPushMalloc(Stack *stackTop, const XML_Content *model, size_t level) {
-  Stack *const newStackTop = malloc(sizeof(Stack));
+  Stack *const newStackTop = (Stack *) malloc(sizeof(Stack));
   if (! newStackTop) {
     return NULL;
   }
