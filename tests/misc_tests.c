@@ -57,7 +57,9 @@
 #include "expat_config.h"
 
 #include <assert.h>
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 #include <stdint.h>
 #include <string.h>
 
@@ -310,7 +312,7 @@ START_TEST(test_misc_stop_during_end_handler_issue_240_1) {
 
   parser = XML_ParserCreate(NULL);
   XML_SetElementHandler(parser, start_element_issue_240, end_element_issue_240);
-  mydata = malloc(sizeof(DataIssue240));
+  mydata = (DataIssue240 *) malloc(sizeof(DataIssue240));
   assert_true(mydata != NULL);
   mydata->parser = parser;
   mydata->deep = 0;
@@ -332,7 +334,7 @@ START_TEST(test_misc_stop_during_end_handler_issue_240_2) {
 
   parser = XML_ParserCreate(NULL);
   XML_SetElementHandler(parser, start_element_issue_240, end_element_issue_240);
-  mydata = malloc(sizeof(DataIssue240));
+  mydata = (DataIssue240 *) malloc(sizeof(DataIssue240));
   assert_true(mydata != NULL);
   mydata->parser = parser;
   mydata->deep = 0;
@@ -876,7 +878,7 @@ typedef struct {
 
 static int XMLCALL
 reentrant_encoding_converter(void *userData, const char *s) {
-  EncodingCallbackData *const data = userData;
+  EncodingCallbackData *const data = (EncodingCallbackData *)userData;
   UNUSED_P(s);
   data->converterCallCount++;
   forbidden_calls_character_handler(data->parser, NULL, 0);
@@ -885,7 +887,7 @@ reentrant_encoding_converter(void *userData, const char *s) {
 
 static void XMLCALL
 reentrant_encoding_release(void *userData) {
-  EncodingCallbackData *const data = userData;
+  EncodingCallbackData *const data = (EncodingCallbackData *)userData;
   data->releaseCallCount++;
   forbidden_calls_character_handler(data->parser, NULL, 0);
 }
@@ -893,7 +895,7 @@ reentrant_encoding_release(void *userData) {
 static int XMLCALL
 reentrant_encoding_handler(void *userData, const XML_Char *name,
                            XML_Encoding *info) {
-  EncodingCallbackData *const data = userData;
+  EncodingCallbackData *const data = (EncodingCallbackData *)userData;
   UNUSED_P(name);
 
   for (int i = 0; i < 256; i++)
@@ -930,7 +932,7 @@ typedef struct {
 
 static void XMLCALL
 position_reading_encoding_release(void *userData) {
-  EncodingReleaseData *const data = userData;
+  EncodingReleaseData *const data = (EncodingReleaseData *) userData;
   data->releaseCallCount++;
   data->lineAtRelease = XML_GetCurrentLineNumber64(data->parser);
 }
