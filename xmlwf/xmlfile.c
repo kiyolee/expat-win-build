@@ -45,7 +45,11 @@
 
 #include "expat_config.h"
 
+#if defined(_MSC_VER) && _MSC_VER < 1700
+#define PRIu64 "llu"
+#else
 #include <inttypes.h> // PRIu64
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
@@ -167,7 +171,7 @@ resolveSystemId(const XML_Char *base, const XML_Char *systemId,
   if (charsRequired > SIZE_MAX / sizeof(XML_Char))
     return systemId;
 
-  *toFree = malloc(charsRequired * sizeof(XML_Char));
+  *toFree = (XML_Char *) malloc(charsRequired * sizeof(XML_Char));
   if (! *toFree)
     return systemId;
   tcscpy(*toFree, base);
@@ -309,5 +313,5 @@ XML_ProcessFile(XML_Parser parser, const XML_Char *filename, unsigned flags) {
     }
   } else
     result = processStream(filename, parser);
-  return (bool)result;
+  return result != 0;
 }

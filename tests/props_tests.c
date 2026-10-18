@@ -40,7 +40,9 @@ __  __            _
 #include "internal.h" // for e.g. EXPAT_ALLOC_TRACKER_ACTIVATION_THRESHOLD_DEFAULT
 
 #include <math.h>
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 
 enum ExpectedType {
   TYPE_BOOL,

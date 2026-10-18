@@ -40,7 +40,11 @@
 #  include <unistd.h> // close
 #endif
 
+#if defined(_MSC_VER) && _MSC_VER < 1700
+#define PRIu64 "llu"
+#else
 #include <inttypes.h> // PRIu64
+#endif
 #include <fcntl.h>    // open
 #include <sys/stat.h>
 #include <assert.h>
@@ -120,7 +124,7 @@ main(int argc, char *argv[]) {
     return 3;
   }
 
-  XMLBuf = malloc(fileAttr.st_size);
+  XMLBuf = (char *) malloc(fileAttr.st_size);
   if (XMLBuf == NULL) {
     fclose(file); // NOTE: this closes fd as well
     fprintf(stderr, "ouf of memory.\n");

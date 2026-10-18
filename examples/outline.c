@@ -38,7 +38,11 @@
    SPDX-License-Identifier: MIT
 */
 
+#if defined(_MSC_VER) && _MSC_VER < 1700
+#define PRIu64 "llu"
+#else
 #include <inttypes.h> // PRIu64
+#endif
 #include <stdio.h>
 #include <expat.h>
 

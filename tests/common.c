@@ -48,7 +48,11 @@
 
 #include <assert.h>
 #include <errno.h>
+#if defined(_MSC_VER) && _MSC_VER < 1700
+#define PRIu64 "llu"
+#else
 #include <inttypes.h> // for PRIu64
+#endif
 #include <stdint.h>   // for SIZE_MAX
 #include <stdio.h>
 #include <string.h>
@@ -266,7 +270,7 @@ _run_attribute_check(const char *text, const XML_Char *expected,
 void
 _run_ext_character_check(const char *text, ExtTest *test_data,
                          const XML_Char *expected, const char *file, int line) {
-  CharData *const storage = malloc(sizeof(CharData));
+  CharData *const storage = (CharData *) malloc(sizeof(CharData));
 
   CharData_Init(storage);
   test_data->storage = storage;
@@ -325,7 +329,7 @@ portable_strndup(const char *s, size_t n) {
 
   n = portable_strnlen(s, n);
 
-  char *const buffer = malloc(n + 1);
+  char *const buffer = (char *) malloc(n + 1);
   if (buffer == NULL) {
     errno = ENOMEM;
     return NULL;

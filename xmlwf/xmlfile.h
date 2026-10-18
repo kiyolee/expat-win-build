@@ -35,7 +35,9 @@
    SPDX-License-Identifier: MIT
 */
 
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 
 #include "expat.h" // for XML_Parser, XML_Char
 
