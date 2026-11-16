@@ -96,6 +96,7 @@
     <ClCompile Include="..\..\..\tests\chardata.c" />
     <ClCompile Include="..\..\..\tests\common.c" />
     <ClCompile Include="..\..\..\tests\dummy.c" />
+    <ClCompile Include="..\..\..\tests\entities_tests.c" />
     <ClCompile Include="..\..\..\tests\handlers.c" />
     <ClCompile Include="..\..\..\tests\hash_tests.c" />
     <ClCompile Include="..\..\..\tests\memcheck.c" />
