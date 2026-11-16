@@ -66,5 +66,8 @@
     <ClCompile Include="..\..\..\tests\xcs_tests.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\tests\entities_tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
