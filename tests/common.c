@@ -428,7 +428,7 @@ portable_strndup(const char *s, size_t n) {
 XML_Char *
 xcsdup_str(const char *s) {
   const size_t len = strlen(s);
-  XML_Char *const buf = calloc(len + /*terminator*/ 1, sizeof(XML_Char));
+  XML_Char *const buf = (XML_Char *) calloc(len + /*terminator*/ 1, sizeof(XML_Char));
   if (! buf)
     return NULL;
   XML_Char *t = buf;

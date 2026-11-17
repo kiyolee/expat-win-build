@@ -126,7 +126,7 @@ static ENTITY *
 createGeneralEntityWithText(const char *text) {
   assert_true(text != NULL);
 
-  ENTITY *const entity = calloc(1, sizeof(ENTITY));
+  ENTITY *const entity = (ENTITY *) calloc(1, sizeof(ENTITY));
   assert_true(entity != NULL);
 
   entity->textPtr = xcsdup_str(text);

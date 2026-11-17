@@ -2356,7 +2356,7 @@ START_TEST(test_alloc_tracker_reset_neutrality) {
       = (size_t)(1.1f * EXPAT_ALLOC_TRACKER_ACTIVATION_THRESHOLD_DEFAULT);
   const char *const before = "<doc a='";
   const char *const after = "'/>";
-  char *const big = malloc(bigSizeBytes);
+  char *const big = (char *) malloc(bigSizeBytes);
   assert_true(big != NULL);
   memset(big, 'X', bigSizeBytes);
   memcpy(big, before, strlen(before)); // without zero terminator

@@ -734,7 +734,11 @@ START_TEST(test_misc_parsing_status_of_unstarted_parser) {
   XML_Memory_Handling_Suite memsuite = {nonzero_filling_malloc, realloc, free};
   XML_Parser parser = XML_ParserCreate_MM(NULL, &memsuite, NULL);
   assert_true(parser != NULL);
+#if defined(_MSC_VER) && _MSC_VER < 1800
+  XML_ParsingStatus status = { XML_PARSING, XML_TRUE};
+#else
   XML_ParsingStatus status = {.parsing = XML_PARSING, .finalBuffer = XML_TRUE};
+#endif
   XML_GetParsingStatus(parser, &status);
   assert_true(status.parsing == XML_INITIALIZED);
   assert_true(status.finalBuffer == XML_FALSE);
@@ -1264,7 +1268,7 @@ dummy_start_doctype(void *userData, const XML_Char *name,
 
 static int
 reset_start_doctype_decl_handler_not_standalone(void *userData) {
-  XML_Parser parser = userData;
+  XML_Parser parser = (XML_Parser)userData;
   XML_SetStartDoctypeDeclHandler(parser, NULL);
   return XML_STATUS_OK;
 }

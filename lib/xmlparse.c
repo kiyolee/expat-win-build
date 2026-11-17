@@ -6934,6 +6934,9 @@ epilogProcessor(XML_Parser parser, const char *s, const char *end,
 // explicit length, instead. Returns
 // ASCII_AMP/ASCII_APOS/ASCII_GT/ASCII_LT/ASCII_QUOT for a match or 0 for no
 // match.
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API int
 isPredefinedEntityName(const XML_Char *name, size_t nameLen) {
   switch (nameLen) {
@@ -6997,6 +7000,9 @@ static const size_t piCloseLen = sizeof(piClose) / sizeof(piClose[0]) - 1;
 // XML_TOK_CDATA_SECT_OPEN/XML_TOK_COMMENT/XML_TOK_PI for a match or
 // XML_TOK_INVALID (=0) for no match. Only in the success case, the length
 // of the token is written to `*openTextLen`.
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API int
 isCDataCommentOrPIStart(const XML_Char *pos, size_t maxLen,
                         size_t *openTextLen) {
@@ -7053,6 +7059,9 @@ isCDataCommentOrPIStart(const XML_Char *pos, size_t maxLen,
      of entities it references), not a total across all entities. Not
      meaningful after ENTITY_SCAN_OVERFLOW; the overflowing value is never
      stored anywhere. */
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API enum EntityScanResult
 scanEntityText(XML_Parser parser, ENTITY *entity, const XML_Char **posPtr,
                XmlBigCount *expandedSize, ENTITY **blockerOut) {
@@ -7254,7 +7263,7 @@ resolveEntityClosureExpandedSize(XML_Parser parser, HASH_TABLE *table,
     return XML_ERROR_NO_MEMORY;
 
   ENTITY_ANALYSIS_TASK *stack
-      = MALLOC(parser, sizeof(ENTITY_ANALYSIS_TASK) * table->used);
+      = (ENTITY_ANALYSIS_TASK *) MALLOC(parser, sizeof(ENTITY_ANALYSIS_TASK) * table->used);
   if (stack == NULL)
     return XML_ERROR_NO_MEMORY;
 
