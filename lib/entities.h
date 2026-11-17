@@ -37,7 +37,9 @@
 #  include "expat_config.h"   // for XML_GE
 #  include "expat_external.h" // for XML_Char
 #  include "internal.h"       // for XML_NONTESTING_STATIC
+#ifndef __cplusplus
 #  include <stdbool.h>        // for size_t
+#endif
 #  include <stddef.h>         // for size_t
 
 typedef struct {
@@ -73,6 +75,10 @@ typedef struct {
 } ENTITY;
 
 #  if XML_GE == 1
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* How a scanEntityText call ended. */
 enum EntityScanResult {
   ENTITY_SCAN_COMPLETE, /* reached end of text; *expandedSize is final */
@@ -94,6 +100,10 @@ EXPAT_INTERNAL_API int isPredefinedEntityName(const XML_Char *name,
 EXPAT_INTERNAL_API enum EntityScanResult
 scanEntityText(XML_Parser parser, ENTITY *entity, const XML_Char **posPtr,
                XmlBigCount *expandedSize, ENTITY **blockerOut);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 #  endif /* XML_GE == 1 */
 
 #endif // ! defined(EXPAT_ENTITIES_H)
