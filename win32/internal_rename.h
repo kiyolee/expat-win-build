@@ -13,9 +13,9 @@
 #define g_reparseDeferralEnabledDefault _EXPAT_INTERNAL(reparseDeferralEnabledDefault)
 #define xmlSetHashSalt _EXPAT_INTERNAL(xmlSetHashSalt)
 
-#define expat_malloc _EXPAT_INTERNAL(expat_malloc)
-#define expat_free _EXPAT_INTERNAL(expat_free)
-#define expat_realloc _EXPAT_INTERNAL(expat_realloc)
+#define expat_malloc _EXPAT_INTERNAL(malloc)
+#define expat_free _EXPAT_INTERNAL(free)
+#define expat_realloc _EXPAT_INTERNAL(realloc)
 
 #define testingResetBytesScanned _EXPAT_INTERNAL(testingResetBytesScanned)
 #define testingGetBytesScanned _EXPAT_INTERNAL(testingGetBytesScanned)
