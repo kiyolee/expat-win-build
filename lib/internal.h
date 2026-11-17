@@ -127,6 +127,8 @@ union expat_align {
 
 #  include "expat.h" // so we can use type XML_Parser below
 
+#  include "internal_rename.h"
+
 #if defined(_WIN32) && defined(libexpat_EXPORTS)
 #define EXPAT_INTERNAL_API __declspec(dllexport)
 #elif defined(_WIN32) && !defined(XML_STATIC)
@@ -155,8 +157,10 @@ EXPAT_INTERNAL_API int xmlSetHashSalt(XML_Parser parser, unsigned long hash_salt
 EXPAT_INTERNAL_API void *expat_malloc(XML_Parser parser, size_t size, int sourceLine);
 EXPAT_INTERNAL_API void expat_free(XML_Parser parser, void *ptr, int sourceLine);
 EXPAT_INTERNAL_API void *expat_realloc(XML_Parser parser, void *ptr, size_t size, int sourceLine);
+
 EXPAT_INTERNAL_API extern void testingResetBytesScanned(XML_Parser parser);
 EXPAT_INTERNAL_API extern unsigned int testingGetBytesScanned(XML_Parser parser);
+
 #  endif
 
 #endif // not defined INTERNAL_H
