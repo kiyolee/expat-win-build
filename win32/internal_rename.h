@@ -34,4 +34,11 @@
 #define hashTableIterInit _EXPAT_INTERNAL(hashTableIterInit)
 #define hashTableIterNext _EXPAT_INTERNAL(hashTableIterNext)
 
+#define XmlGetUtf16InternalEncoding _EXPAT_INTERNAL(XmlGetUtf16InternalEncoding)
+#define XmlGetUtf16LittleEndianEncoding _EXPAT_INTERNAL(XmlGetUtf16LittleEndianEncoding)
+#define XmlGetUtf16BigEndianEncoding _EXPAT_INTERNAL(XmlGetUtf16BigEndianEncoding)
+#define XmlGetUtf16InternalEncodingNS _EXPAT_INTERNAL(XmlGetUtf16InternalEncodingNS)
+#define XmlGetUtf16LittleEndianEncodingNS _EXPAT_INTERNAL(XmlGetUtf16LittleEndianEncodingNS)
+#define XmlGetUtf16BigEndianEncodingNS _EXPAT_INTERNAL(XmlGetUtf16BigEndianEncodingNS)
+
 #endif // not defined INTERNAL_RENAME_H

@@ -174,7 +174,7 @@ struct encoding {
   SCANNER literalScanners[XML_N_LITERAL_TYPES];
   int (*nameMatchesAscii)(const ENCODING *, const char *, const char *,
                           const char *);
-  int (*nameLength)(const ENCODING *, const char *);
+  size_t (*nameLength)(const ENCODING *, const char *);
   const char *(*skipS)(const ENCODING *, const char *);
   size_t (*getAtts)(const ENCODING *enc, const char *ptr, size_t attsMax,
                     ATTRIBUTE *atts);
@@ -291,7 +291,9 @@ int XmlParseXmlDecl(int isGeneralTextEntity, const ENCODING *enc,
 int XmlInitEncoding(INIT_ENCODING *p, const ENCODING **encPtr,
                     const char *name);
 const ENCODING *XmlGetUtf8InternalEncoding(void);
-const ENCODING *XmlGetUtf16InternalEncoding(void);
+EXPAT_INTERNAL_API const ENCODING *XmlGetUtf16InternalEncoding(void);
+EXPAT_INTERNAL_API const ENCODING *XmlGetUtf16LittleEndianEncoding(void);
+EXPAT_INTERNAL_API const ENCODING *XmlGetUtf16BigEndianEncoding(void);
 int XmlUtf8Encode(int charNumber, char *buf);
 int XmlUtf16Encode(int charNumber, unsigned short *buf);
 int XmlSizeOfUnknownEncoding(void);
@@ -310,7 +312,9 @@ int XmlParseXmlDeclNS(int isGeneralTextEntity, const ENCODING *enc,
 int XmlInitEncodingNS(INIT_ENCODING *p, const ENCODING **encPtr,
                       const char *name);
 const ENCODING *XmlGetUtf8InternalEncodingNS(void);
-const ENCODING *XmlGetUtf16InternalEncodingNS(void);
+EXPAT_INTERNAL_API const ENCODING *XmlGetUtf16InternalEncodingNS(void);
+EXPAT_INTERNAL_API const ENCODING *XmlGetUtf16LittleEndianEncodingNS(void);
+EXPAT_INTERNAL_API const ENCODING *XmlGetUtf16BigEndianEncodingNS(void);
 ENCODING *XmlInitUnknownEncodingNS(void *mem, const int *table,
                                    CONVERTER convert, void *userData);
 

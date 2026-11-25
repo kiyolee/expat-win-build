@@ -44,7 +44,7 @@ NS(XmlGetUtf8InternalEncoding)(void) {
   return &ns(internal_utf8_encoding).enc;
 }
 
-const ENCODING *
+EXPAT_INTERNAL_API const ENCODING *
 NS(XmlGetUtf16InternalEncoding)(void) {
 #  if BYTEORDER == 1234
   return &ns(internal_little2_encoding).enc;
@@ -55,6 +55,16 @@ NS(XmlGetUtf16InternalEncoding)(void) {
   return (*(const char *)&n ? &ns(internal_little2_encoding).enc
                             : &ns(internal_big2_encoding).enc);
 #  endif
+}
+
+EXPAT_INTERNAL_API const ENCODING *
+NS(XmlGetUtf16LittleEndianEncoding)(void) {
+  return &ns(little2_encoding).enc;
+}
+
+EXPAT_INTERNAL_API const ENCODING *
+NS(XmlGetUtf16BigEndianEncoding)(void) {
+  return &ns(big2_encoding).enc;
 }
 
 static const ENCODING *const NS(encodings)[] = {
