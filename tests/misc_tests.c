@@ -1131,7 +1131,7 @@ struct DecoderInfo {
 
 static int
 decodeUnknownEncoding(void *data, const char *s) {
-  struct DecoderInfo *const info = data;
+  struct DecoderInfo *const info = (struct DecoderInfo *) data;
   assert_true(info != NULL);
 
   // Determine the sequence length in accordence with encoding map
@@ -1176,7 +1176,7 @@ START_TEST(test_misc_unknown_encoding_no_source_overread) {
 
   XML_Parser parser = XML_ParserCreate(encodingName);
 
-  char *const buffer = XML_GetBuffer64(parser, docLen);
+  char *const buffer = (char *) XML_GetBuffer64(parser, docLen);
   assert_true(buffer != NULL);
   memcpy(buffer, doc, docLen);
 

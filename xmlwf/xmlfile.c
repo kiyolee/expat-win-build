@@ -125,7 +125,7 @@ reportError(XML_Parser parser, const XML_Char *filename) {
 static void
 processFile(const void *data, size_t size, const XML_Char *filename,
             void *args) {
-  PROCESS_ARGS *const processArgs = args;
+  PROCESS_ARGS *const processArgs = (PROCESS_ARGS *) args;
   XML_Parser parser = processArgs->parser;
   int *const retPtr = processArgs->retPtr;
   if (XML_Parse64(parser, (const char *)data, size, XML_TRUE)

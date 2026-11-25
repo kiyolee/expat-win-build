@@ -44,6 +44,9 @@ NS(XmlGetUtf8InternalEncoding)(void) {
   return &ns(internal_utf8_encoding).enc;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API const ENCODING *
 NS(XmlGetUtf16InternalEncoding)(void) {
 #  if BYTEORDER == 1234
@@ -57,11 +60,17 @@ NS(XmlGetUtf16InternalEncoding)(void) {
 #  endif
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API const ENCODING *
 NS(XmlGetUtf16LittleEndianEncoding)(void) {
   return &ns(little2_encoding).enc;
 }
 
+#ifdef __cplusplus
+extern "C"
+#endif
 EXPAT_INTERNAL_API const ENCODING *
 NS(XmlGetUtf16BigEndianEncoding)(void) {
   return &ns(big2_encoding).enc;

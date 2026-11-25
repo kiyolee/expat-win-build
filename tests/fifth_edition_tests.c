@@ -38,7 +38,9 @@ __  __            _
 #include "internal.h" // for g_reparseDeferralEnabledDefault
 #include "utfx.h"     // for decodeCharUtf16 etc
 
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 #include <stddef.h> // for size_t
 #include <stdint.h>
 #include <stdio.h>  // for snprintf

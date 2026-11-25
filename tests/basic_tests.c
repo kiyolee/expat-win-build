@@ -131,7 +131,7 @@ START_TEST(test_parsebuffer64) {
   const char *const doc = "<hello>world!</hello>";
   XML_Parser parser = XML_ParserCreate(NULL);
 
-  char *const buffer = XML_GetBuffer64(parser, strlen(doc));
+  char *const buffer = (char *) XML_GetBuffer64(parser, strlen(doc));
   memcpy(buffer, doc, strlen(doc));
   assert_true(
       XML_ParseBuffer64_SINGLE_BYTES(parser, strlen(doc), /*isFinal=*/XML_TRUE)
@@ -6980,7 +6980,7 @@ START_TEST(test_eventptr_after_nonerror_parse_final) {
 
     XML_Parser parser = XML_ParserCreate(NULL);
     if (useParseBuffer) {
-      char *const buffer = XML_GetBuffer(parser, (int)docLen);
+      char *const buffer = (char *) XML_GetBuffer(parser, (int)docLen);
       assert_true(buffer != NULL);
       memcpy(buffer, doc, docLen);
 
@@ -7051,7 +7051,7 @@ START_TEST(test_eventptr_after_nonerror_parse_nonfinal_with_suspend) {
     XML_SetCommentHandler(parser, suspending_comment_handler);
 
     if (useParseBuffer) {
-      char *const doc = XML_GetBuffer(parser, (int)docLen);
+      char *const doc = (char *) XML_GetBuffer(parser, (int)docLen);
       assert_true(doc != NULL);
       memcpy(doc, intro, strlen(intro));
       memcpy(doc + strlen(intro), outro, strlen(outro));
@@ -7104,7 +7104,7 @@ START_TEST(test_eventptr_after_nonerror_parse_nonfinal_without_suspend) {
     bool useParseBuffer = cases[i];
 
     if (useParseBuffer) {
-      char *const doc = XML_GetBuffer(parser, (int)docLen);
+      char *const doc = (char *) XML_GetBuffer(parser, (int)docLen);
       assert_true(doc != NULL);
       memcpy(doc, intro, strlen(intro));
       memcpy(doc + strlen(intro), outro, strlen(outro));
@@ -7158,7 +7158,7 @@ log_and_stop_pi_handler(void *userData, const XML_Char *target,
                         const XML_Char *data) {
   UNUSED_P(target);
   UNUSED_P(data);
-  struct ByteIndexLog *const log = userData;
+  struct ByteIndexLog *const log = (struct ByteIndexLog *) userData;
 
   assert_true(log != NULL);
   assert_true(log->parser != NULL);
@@ -7285,7 +7285,7 @@ START_TEST(test_eventptr_fresh) {
 
         struct ByteIndexLog log
             = {parser, suspend, expectedEntriesLen, 0,
-               malloc(expectedEntriesLen * sizeof(struct ByteIndexLogEntry))};
+               (struct ByteIndexLogEntry *) malloc(expectedEntriesLen * sizeof(struct ByteIndexLogEntry))};
         assert_true(log.entries != NULL);
 
         XML_SetUserData(parser, &log);
@@ -7293,7 +7293,7 @@ START_TEST(test_eventptr_fresh) {
 
         enum XML_Status status;
         if (useParseBuffer) {
-          char *const buffer = XML_GetBuffer64(parser, strlen(doc));
+          char *const buffer = (char *) XML_GetBuffer64(parser, strlen(doc));
           assert_true(buffer != NULL);
           memcpy(buffer, doc, strlen(doc));
           status = XML_ParseBuffer64(parser, strlen(doc), /*isFinal=*/XML_TRUE);
@@ -7343,7 +7343,7 @@ END_TEST
 START_TEST(test_eventptr_after_initial_error_parse) {
   const char *const doc = "<unclosed>";
   const size_t docLen = strlen(doc);
-  char *const buffer = malloc(docLen);
+  char *const buffer = (char *) malloc(docLen);
   assert_true(buffer != NULL);
   memcpy(buffer, doc, docLen);
 

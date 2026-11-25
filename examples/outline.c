@@ -56,7 +56,7 @@
 
 static void XMLCALL
 startElement(void *userData, const XML_Char *name, const XML_Char **atts) {
-  size_t *const depthPtr = userData;
+  size_t *const depthPtr = (size_t *) userData;
 
   for (size_t i = 0; i < *depthPtr; i++)
     printf("  ");
@@ -73,7 +73,7 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts) {
 
 static void XMLCALL
 endElement(void *userData, const XML_Char *name) {
-  size_t *const depthPtr = userData;
+  size_t *const depthPtr = (size_t *) userData;
   (void)name;
 
   *depthPtr -= 1;

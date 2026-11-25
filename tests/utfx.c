@@ -34,7 +34,9 @@ __  __            _
 #include "utfx.h"
 #include "minicheck.h" // for assert_true
 
+#ifndef __cplusplus
 #include <stdbool.h>
+#endif
 #include <stdlib.h> // for malloc
 #include <string.h> // for strlen
 
@@ -276,7 +278,7 @@ dup_utf8_to_utf16(const uint8_t *utf8, size_t *outLenBytes,
   assert_true(maxLength <= (SIZE_MAX - 2) / 4);
   const size_t pessimisticBytesNeeded = maxLength * 4 + /*terminator*/ 2;
 
-  uint8_t *const utf16 = malloc(pessimisticBytesNeeded);
+  uint8_t *const utf16 = (uint8_t *) malloc(pessimisticBytesNeeded);
   if (utf16 == NULL)
     return NULL;
 
